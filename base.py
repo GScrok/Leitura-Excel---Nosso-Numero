@@ -32,18 +32,26 @@ for excel in arquivos:
                 if tabela.iloc[i, 2] != 'L':
                     cart = tabela.iloc[i, 0]
                     cart = "{:.0f}".format(cart)
-
-                    nosso_numero = tabela.iloc[i, 1]
-                    nosso_numero = "{:09.0f}".format(nosso_numero)
                     
-                    #data_paga = tabela.iloc[i, 2]
+                    nosso_numero = tabela.iloc[i, 1]
+                    resto_nosso_numero = nosso_numero % 10
+                    nosso_numero = nosso_numero / 10
+
+                    nosso_numero = math.trunc(nosso_numero)
+                    nosso_numero_str = "{:08}".format(nosso_numero)
+
+
+                    resto_nosso_numero_str = "{:.0f}".format(resto_nosso_numero)
+                    
+
+                    #data_paga = tabela.iloc[i, 3]
                     #data_paga = data_paga.strftime("%Y-%m-%d")
                     
                     n_pago.append({
-                        'nosso numero':f"{cart}/{nosso_numero}",
-                        'movimentacao':tabela.iloc[i, 1],
+                        'nosso numero':f"{cart}/{nosso_numero_str}-{resto_nosso_numero_str}",
+                        'movimentacao':tabela.iloc[i, 2],
                         #'data_paga': data_paga
-                    })
+                })
                     continue
 
                 cart = tabela.iloc[i, 0]
@@ -84,16 +92,24 @@ for excel in arquivos:
                     cart = "{:.0f}".format(cart)
                     
                     nosso_numero = tabela.iloc[i, 1]
-                    nosso_numero = "{:09.0f}".format(nosso_numero)
+                    resto_nosso_numero = nosso_numero % 10
+                    nosso_numero = nosso_numero / 10
+
+                    nosso_numero = math.trunc(nosso_numero)
+                    nosso_numero_str = "{:08}".format(nosso_numero)
+
+
+                    resto_nosso_numero_str = "{:.0f}".format(resto_nosso_numero)
                     
-                    #data_paga = tabela.iloc[i, 2]
+
+                    #data_paga = tabela.iloc[i, 3]
                     #data_paga = data_paga.strftime("%Y-%m-%d")
                     
                     n_pago.append({
-                        'nosso numero':f"{cart}/{nosso_numero}",
-                        'movimentacao':tabela.iloc[i, 1],
+                        'nosso numero':f"{cart}/{nosso_numero_str}-{resto_nosso_numero_str}",
+                        'movimentacao':tabela.iloc[i, 2],
                         #'data_paga': data_paga
-                    })
+                })
                     continue
 
                 cart = tabela.iloc[i, 0]
